@@ -8,6 +8,9 @@ def main():
 
     if (sys.argv[1].lower() == "b"):
         print(find_body(int(sys.argv[2])))
+    elif (sys.argv[1].lower() == "p"):
+        for body in find_prog(int(sys.argv[2])):
+            print(body)
     elif (sys.argv[1].lower() == "l"):
         print(find_list(int(sys.argv[2])))
     elif (sys.argv[1].lower() == "d"):
@@ -56,6 +59,12 @@ def find_body(a):
         j, k = get_single_arrow(y)
         return "R{}-  ->  L{}, L{}".format(int((x-1)/2), j, k)
     return "R{}+  ->  L{}".format(int(x/2), y)
+
+    
+# Given an integer, returns the instructions it represents when 
+# interpreted as a program
+def find_prog(a):
+    return [find_body(i) for i in find_list(a)]
 
 if __name__ == '__main__':
     main()
