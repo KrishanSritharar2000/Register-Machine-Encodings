@@ -7,7 +7,9 @@ def main():
         return
 
 
-    if (sys.argv[1].lower() == "d"):
+    if (sys.argv[1].lower() == "l"):
+        print(find_list(int(sys.argv[2])))
+    elif (sys.argv[1].lower() == "d"):
         print(get_double_arrow(int(sys.argv[2])))
     elif (sys.argv[1].lower() == "s"):
         print(get_single_arrow(int(sys.argv[2])))
@@ -33,7 +35,16 @@ def get_single_arrow(a):
         return 0, 0
     return get_double_arrow(a+1)
 
-
+# Given an integer, returns its representation as a list
+def find_list(a):
+    result = []
+    while True:
+        x, l = get_double_arrow(a)
+        result.append(x)
+        if (l == 0):
+            break
+        a = l
+    return result
 
 if __name__ == '__main__':
     main()
