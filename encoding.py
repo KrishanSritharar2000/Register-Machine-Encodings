@@ -6,8 +6,9 @@ def main():
     if (len(sys.argv) < 1):
         return
 
-
-    if (sys.argv[1].lower() == "l"):
+    if (sys.argv[1].lower() == "b"):
+        print(find_body(int(sys.argv[2])))
+    elif (sys.argv[1].lower() == "l"):
         print(find_list(int(sys.argv[2])))
     elif (sys.argv[1].lower() == "d"):
         print(get_double_arrow(int(sys.argv[2])))
@@ -45,6 +46,16 @@ def find_list(a):
             break
         a = l
     return result
+
+    # Given an integer, returns its representatin as an instruction body
+def find_body(a):
+    if a == 0:
+        return "HALT"
+    x, y = get_double_arrow(a)
+    if (x % 2 != 0):
+        j, k = get_single_arrow(y)
+        return "R{}-  ->  L{}, L{}".format(int((x-1)/2), j, k)
+    return "R{}+  ->  L{}".format(int(x/2), y)
 
 if __name__ == '__main__':
     main()
